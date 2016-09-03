@@ -1,0 +1,25 @@
+{
+  "name": "atom-update-package",
+  "version": "0.0.1",
+  "description": "Publishes a new version of a Core Atom package and updates the Atom package.json to match",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lee-dohm/atom-update-package.git"
+  },
+  "keywords": [
+    "atom",
+    "package",
+    "update",
+    "publish"
+  ],
+  "author": "Lee Dohm <lee@lee-dohm.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/lee-dohm/atom-update-package/issues"
+  },
+  "homepage": "https://github.com/lee-dohm/atom-update-package#readme"
+}
