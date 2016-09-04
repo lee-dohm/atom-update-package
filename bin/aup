@@ -6,9 +6,9 @@ const writePackageJson = require('../lib/write-package-json')
 
 const argv = require('yargs')
   .usage('Usage: $0 [options]')
-  .help('help')
   .describe('atom-dir', 'Path to the Atom source repository')
   .default({'atom-dir': '~/github/atom'})
+  .help('help')
   .argv
 
 let publishArgs = ['publish']
