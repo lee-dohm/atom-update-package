@@ -1,0 +1,33 @@
+#!/usr/bin/env node
+
+const readPackageJson = require('../lib/read-package-json')
+const spawnSync = require('../lib/spawn-sync')
+const writePackageJson = require('../lib/write-package-json')
+
+const argv = require('yargs')
+  .usage('Usage: $0 [options]')
+  .help('help')
+  .describe('atom-dir', 'Path to the Atom source repository')
+  .default({'atom-dir': '~/github/atom'})
+  .argv
+
+let publishArgs = ['publish']
+publishArgs = publishArgs.concat[argv._]
+spawnSync('apm', apmArgs, {stdio: 'inherit'})
+
+let metadata = readPackageJson()
+
+let atomDir = argv['atom-dir']
+let originalDir = process.cwd()
+process.chdir(atomDir)
+
+let packageName = metadata['name']
+let version = metadata['version']
+let atomMetadata = readPackageJson()
+atomMetadata['packageDependencies'][packageName] = version
+writePackageJson(atomMetadata)
+
+spawnSync('git', ['add', 'package.json'], {stdio: 'inherit'})
+spawnSync('git', ['commit', '-m', `":arrow_up: ${packageName}@${version}"`], {stdio: 'inherit'})
+
+process.chdir(originalDir)
